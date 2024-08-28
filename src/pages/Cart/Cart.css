@@ -6,6 +6,7 @@
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
     align-items: center;
+    text-align: center;
     color: grey;
     font-size: max(1vw, 12px);
 }
@@ -16,7 +17,7 @@
 }
 
 .cart-items-item img {
-    width: 50px;
+    width: max(1.5vw, 20px);
     border-radius: 50%;
 }
 
