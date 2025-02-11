@@ -4,31 +4,39 @@ import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
 import Navbar from './components/Navbar/Navbar'
 import Login from './components/Login/Login'
 import Missing from "./Missing"
-
+import ProtectedRoutes from './ProtectedRoutes'
 import { Routes, Route } from 'react-router-dom'
 import Footer from './components/Footer/Footer'
-import { useState } from 'react'
+import { useContext } from 'react'
+import { AuthContext } from './Context/AuthContext'
+import { ToastContainer } from 'react-toastify'
+import Orders from './pages/Order/Order'
+import VerifyPayment from './pages/VerifyPayment'
 
 
 
 
 function App() {
-  const [login, setLogin] = useState(false)
+  const { login } = useContext(AuthContext)
 
   return (
     <>
-      {login ?<Login setLogin={setLogin }/>: <></> }
+      <ToastContainer />
+      {login ? <Login /> : <></>}
       <div className="app">
-        <Navbar setLogin={setLogin }/>
+        <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/order' element={<PlaceOrder />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/placeorder' element={<PlaceOrder />} />
+            <Route path='/order' element={<Orders />} />
+            <Route path='/verify' element={<VerifyPayment />} />
+          </Route>
           <Route path="*" element={<Missing />} />
         </Routes>
         <Footer />
       </div >
-
     </>
   )
 }

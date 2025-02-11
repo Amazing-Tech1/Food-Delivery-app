@@ -5,6 +5,7 @@
     height: 100%;
     background-color: #00000090;
     display: grid;
+    overflow: auto;
 }
 
 .login-container {
@@ -45,6 +46,12 @@
     padding: 10px;
     border-radius: 8px;
     font-size: max(1.2vw, 12px);
+}
+
+.password-info {
+    color: red;
+    margin-top: -10px;
+    font-size: 9px;
 }
 
 .login-container button {

@@ -5,8 +5,8 @@
 .cart-items-title {
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
-    align-items: center;
-    text-align: center;
+    align-items: left;
+    text-align: left;
     color: grey;
     font-size: max(1vw, 12px);
 }
@@ -17,7 +17,7 @@
 }
 
 .cart-items-item img {
-    width: max(1.5vw, 20px);
+    width: max(1.6vw, 24px);
     border-radius: 50%;
 }
 
@@ -39,7 +39,7 @@ cart hr {
 }
 
 .cart-total {
-    flex: 1;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -56,10 +56,11 @@ cart hr {
 }
 
 .cart-total button {
+    flex-grow: 1;
+    width: 100%;
     border: none;
     color: white;
     background-color: tomato;
-    width: max(15vw, 200px);
     padding: 12px 0px;
     border-radius: 8px;
     margin-top: 12px;
@@ -107,5 +108,15 @@ cart hr {
 
     .cart-promocode {
         justify-content: start;
+    }
+}
+
+@media(max-width:456px) {
+    .cart-items-title {
+        grid-template-columns: 0.8fr 1.3fr 1.3fr 1fr 0.4fr;
+    }
+
+    .cart-items-title .total {
+        display: none;
     }
 }

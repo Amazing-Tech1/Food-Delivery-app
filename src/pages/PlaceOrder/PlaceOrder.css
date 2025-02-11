@@ -37,7 +37,23 @@
     max-width: max(40%, 500px);
 }
 
-.place-order .cart-total button {
+.place-order-right .proceed {
     margin-top: 30px;
     font-size: max(1.1vw, 12px);
+    background-color: tomato;
+    font-weight: 500;
+    text-align: center;
+    padding: 12px;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+@media(max-width:750px) {
+    .place-order {
+        flex-direction: column;
+        gap: 20px;
+    }
 }

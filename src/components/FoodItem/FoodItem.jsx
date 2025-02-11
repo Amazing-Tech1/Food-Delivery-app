@@ -2,19 +2,28 @@ import React, { useContext } from 'react'
 import './FoodItem.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../Context/StoreContext'
+import { AuthContext } from '../../Context/AuthContext'
 
 function FoodItem({ item }) {
-    const { cartItems, addToCart, removeFromCart } = useContext(StoreContext)
-
+    const { cartItems, addToCart, removeFromCart, formatCurrency } = useContext(StoreContext)
+    const { setLogin, isAuth } = useContext(AuthContext)
     return (
         <div className='food-item'>
             <div className="food-item-img-container">
                 <img className='food-item-img' src={item.image} alt="" />
-                {!cartItems[item._id] ?
+                {!cartItems[item._id] || !isAuth ?
                     <img
                         className='add'
-                        onClick={() => addToCart(item._id)}
-                        src={assets.add_icon_white} /> :
+                        onClick={() => {
+                            if (isAuth) {
+                                addToCart(item._id)
+                            } else {
+                                setLogin(true)
+                            }
+                        }
+                        }
+                        src={assets.add_icon_white} />
+                    :
                     <div className="food-item-counter">
                         <img onClick={() => removeFromCart(item._id)} src={assets.remove_icon_red} alt="" />
                         <p>{cartItems[item._id]}</p>
@@ -28,7 +37,7 @@ function FoodItem({ item }) {
                     <img src={assets.rating_starts} alt="" />
                 </div>
                 <p className="food-item-des">{item.description}</p>
-                <p className="food-item-price">${item.price}</p>
+                <p className="food-item-price">{formatCurrency(item.price)}</p>
             </div>
         </div>
     )

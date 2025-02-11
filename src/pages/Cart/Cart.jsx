@@ -1,11 +1,30 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import './Cart.css'
 import { StoreContext } from '../../Context/StoreContext'
 import { useNavigate } from 'react-router-dom'
 
 function Cart() {
-  const { food_list, cartItems, removeFromCart, getTotalCartAmount } = useContext(StoreContext)
+  const { menuList, cartItems, removeFromCart, getTotalCartAmount, formatCurrency } = useContext(StoreContext)
   const navigate = useNavigate()
+
+  const [cartData, setCartData] = useState([]);
+
+  useEffect(() => {
+    if (menuList.length > 0) {
+      const tempData = [];
+      for (const item in cartItems) {
+        if (cartItems[item] > 0) {
+          tempData.push({
+            _id: item,
+            quantity: cartItems[item]
+          })
+        }
+
+      }
+      setCartData(tempData);
+    }
+
+  }, [cartItems, menuList])
 
   return (
     <div className='cart'>
@@ -15,22 +34,22 @@ function Cart() {
           <p>Title</p>
           <p>Price</p>
           <p>Quantity</p>
-          <p>Total</p>
+          <p className='total'>Total</p>
           <p>Remove</p>
         </div>
         <br />
 
         <hr />
-        {food_list.map((item, index) => {
+        {menuList.map((item, index) => {
           if (cartItems[item._id] > 0) {
             return (
               <div>
                 <div className="cart-items-title cart-items-item">
                   <img src={item.image} alt="" />
                   <p>{item.name}</p>
-                  <p>${item.price}</p>
+                  <p> {formatCurrency(item.price)}</p>
                   <p>{cartItems[item._id]}</p>
-                  <p>${item.price * cartItems[item._id]}</p>
+                  <p className='total'>{formatCurrency(item.price * cartItems[item._id])}</p>
                   <p onClick={() => removeFromCart(item._id)} className='cross'>x</p>
                 </div>
                 <hr />
@@ -45,20 +64,20 @@ function Cart() {
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
-              <p>${getTotalCartAmount()}</p>
+              <p> {formatCurrency(getTotalCartAmount())}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
+              <p>{formatCurrency(getTotalCartAmount() === 0 ? 0 : 300)}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
+              <b> {getTotalCartAmount() === 0 ? formatCurrency(0) : formatCurrency(getTotalCartAmount() + 300)}</b>
             </div>
           </div>
-          <button onClick={() => navigate('/order')} >PROCEED TO CHECKOUT</button>
+          <button onClick={() => navigate('/placeorder')} >PROCEED TO CHECKOUT</button>
         </div>
         <div className="cart-promocode">
           <p>If you have a promo code, Enter it here</p>

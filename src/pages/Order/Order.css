@@ -1,0 +1,181 @@
+.orders {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.order-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(128, 128, 128, 0.082);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-image {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.order-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    width: 100px;
+    margin-left: 20px;
+}
+
+.order-name {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.order-info p {
+    margin: 5px 0;
+
+}
+
+.order-price {
+    font-size: 1rem;
+    color: #27ae60;
+}
+
+.order-quantity{
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.order-date {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.order-date span {
+    font-weight: bold;
+    color: #333;
+}
+
+.order-status {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.status-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: tomato;
+}
+
+.status-text {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Track order button */
+.track-order-btn {
+    background-color: tomato;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.track-order-btn:hover {
+    transform: scale(0.9);
+}
+
+@media (max-width: 900px) {
+    .orders {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 700px) {
+    .order-name {
+        font-size: 1rem;
+    }
+
+}
+
+@media (max-width: 500px) {
+    .order-container {
+        padding: 5px;
+
+    }
+
+    .order-image-cont {
+        display: flex;
+        align-items: center;
+        width: 14vw;
+    }
+
+    .order-image {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+    }
+
+    .order-name {
+        font-size: 0.8rem;
+    }
+
+    .order-info {
+        margin: 2px;
+    }
+
+    .order-info p {
+        margin: 1px 0;
+
+    }
+
+    .order-price,
+    .order-quantity,
+    .order-date {
+        font-size: 0.8rem;
+    }
+
+    .status-text {
+        font-size: 0.8rem;
+    }
+
+    .status-container {
+        gap: 5px;
+    }
+    .status-dot {
+        width: 5px;
+        height: 5px;
+    }
+
+    .track-order-btn {
+        padding: 10px 5px;
+        margin-top: 0px;
+        font-size: 0.8rem;
+    }
+    .order-details {
+        margin-left: 7px;
+    }
+}
