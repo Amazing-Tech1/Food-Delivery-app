@@ -71,7 +71,11 @@ function AuthContextProvider({ children }) {
         }
       }
     } catch (err) {
-
+      if (currState === "Sign Up") {
+        toast.error("Sign Up failed! Try again")
+      } else {
+        toast.error("Login failed! Try again")
+      }
     }
 
   }
